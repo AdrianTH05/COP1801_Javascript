@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tip Calculator Assignment</title>
+</head>
+<body>
+
+<h2>Tip Calculator</h2>
+<p>Click the button to start the tip calculator.</p>
+<button onclick="runCalculator()">Start</button>
+
+<script>
+// Function to validate service quality
+function validateServiceQuality(quality) {
+    quality = quality.toLowerCase();
+    return quality === "great" || quality === "ok" || quality === "poor";
+}
+
+// Function to validate service amount
+function validateServiceAmount(amount) {
+    return amount >= 5 && amount <= 500;
+}
+
+// Function to calculate tip
+function calculateTip(amount, quality) {
+    if (quality === "great") return amount * 0.20;
+    if (quality === "ok") return amount * 0.15;
+    if (quality === "poor") return amount * 0.10;
+}
+
+// MAIN PROGRAM wrapped in a function so preview won't block it
+function runCalculator() {
+    let amount = parseFloat(prompt("Enter the dollar amount of the service:"));
+    let quality = prompt("Was the service great, ok, or poor?");
+
+    if (!validateServiceQuality(quality)) {
+        alert("Invalid service quality. Enter great, ok, or poor.");
+        return;
+    }
+
+    if (!validateServiceAmount(amount)) {
+        alert("Invalid amount. Enter between $5.00 and $500.00.");
+        return;
+    }
+
+    let tip = calculateTip(amount, quality.toLowerCase());
+
+    alert(
+        "Service amount: $" + amount.toFixed(2) + "\n" +
+        "Service quality: " + quality.toLowerCase() + "\n" +
+        "Recommended tip: $" + tip.toFixed(2)
+    );
+}
+</script>
+
+</body>
+</html>
