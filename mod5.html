@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Module 05 – JavaScript Objects</title>
+</head>
+<body>
+
+<h2>Module 05 Assignment – Using JavaScript to Create Objects</h2>
+
+<script>
+/* =========================================================
+   STEP 1: Create a literal object named myDog
+   Using information from Wikipedia’s List of Fictional Dogs
+   ========================================================= */
+
+let myDog = {
+    name: "Astro",
+    sound: "When I bark I am not scary.",
+    show: "The Jetsons",
+    breed: "Great Dane",
+    role: "Family dog",
+    mySound: "I may sound big, but I am friendly and playful."
+};
+
+/* =========================================================
+   STEP 2: Display the dog’s information using each property
+   ========================================================= */
+
+document.write(
+    "Hello, my name is " + myDog.name + ", " +
+    myDog.sound + " I starred in the TV show " +
+    myDog.show + ". My character was a " +
+    myDog.breed + ". I was the " +
+    myDog.role + " in a cartoon about a family in the future.<br><br>"
+);
+
+/* =========================================================
+   STEP 3: Create a constructor function
+   ========================================================= */
+
+function Dog(name, sound, show, breed, role, mySound, canTalk) {
+    this.name = name;
+    this.sound = sound;
+    this.show = show;
+    this.breed = breed;
+    this.role = role;
+    this.mySound = mySound;
+    this.canTalk = canTalk;
+
+    /* Object method */
+    this.myGreeting = function () {
+        document.write(
+            "Hello, my name is " + this.name + ", " +
+            this.sound + " I starred in the TV show " +
+            this.show + ". My character was a " +
+            this.breed + ". I was the " +
+            this.role + " in a cartoon about a family in the future.<br>"
+        );
+    };
+}
+
+/* =========================================================
+   STEP 4: Create an object using the constructor
+   ========================================================= */
+
+let myDogConst = new Dog(
+    "Astro",
+    "when I bark I am not scary.",
+    "The Jetsons",
+    "Great Dane",
+    "family dog",
+    "I sound friendly and loyal.",
+    true
+);
+
+/* =========================================================
+   STEP 5: Call the object’s method
+   ========================================================= */
+
+myDogConst.myGreeting();
+
+</script>
+
+</body>
+</html>
