@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Module 06 – JavaScript Objects with Constructors</title>
+</head>
+<body>
+
+<h2>Module 06 Assignment – JavaScript Object Constructors</h2>
+
+<p id="output"></p>
+<p id="greeting"></p>
+<p id="error" style="color:red;"></p>
+
+<script>
+/* =========================================================
+   STEP 1: Constructor Function
+   ========================================================= */
+
+function Dog(name, sound, show, breed, role, mySound, canTalk) {
+    this.name = name;
+    this.sound = sound;
+    this.show = show;
+    this.breed = breed;
+    this.role = role;
+    this.mySound = mySound;
+    this.canTalk = canTalk;
+
+    // Modified greeting method with conditional
+    this.myGreeting = function () {
+        if (this.canTalk) {
+            return "Hello, my name is " + this.name + ". I can talk!";
+        } else {
+            return "Hello, my name is " + this.name + ". I cannot talk.";
+        }
+    };
+}
+
+/* =========================================================
+   STEP 2: Create Dog Objects
+   (From Wikipedia fictional animated dogs)
+   ========================================================= */
+
+let astro = new Dog(
+    "Astro",
+    "When I bark I am not scary.",
+    "The Jetsons",
+    "Great Dane",
+    "Family dog",
+    "I am friendly and playful.",
+    true
+);
+
+let snoopy = new Dog(
+    "Snoopy",
+    "I express myself through imagination.",
+    "Peanuts",
+    "Beagle",
+    "Pet dog",
+    "I love pretending to be a flying ace.",
+    false
+);
+
+/* Store dogs for easy lookup */
+let dogs = {
+    Astro: astro,
+    Snoopy: snoopy
+};
+
+/* =========================================================
+   STEP 3: Display properties using for...in loop
+   ========================================================= */
+
+for (let dog in dogs) {
+    document.write("<strong>" + dog + "</strong><br>");
+    for (let prop in dogs[dog]) {
+        if (typeof dogs[dog][prop] !== "function") {
+            document.write(prop + ": " + dogs[dog][prop] + "<br>");
+        }
+    }
+    document.write("<br>");
+}
+
+/* =========================================================
+   STEP 4: Prompt user to select a dog
+   ========================================================= */
+
+let choice = prompt("Choose a dog: Astro or Snoopy");
+
+/* =========================================================
+   STEP 5: Display selected dog or error message
+   ========================================================= */
+
+if (dogs[choice]) {
+    let info = "";
+
+    for (let prop in dogs[choice]) {
+        if (typeof dogs[choice][prop] !== "function") {
+            info += prop + ": " + dogs[choice][prop] + "<br>";
+        }
+    }
+
+    document.getElementById("output").innerHTML = info;
+    document.getElementById("greeting").innerHTML = dogs[choice].myGreeting();
+
+} else {
+    document.getElementById("error").innerHTML =
+        "Error: The dog you selected does not exist.";
+}
+
+</script>
+
+</body>
+</html>
+
